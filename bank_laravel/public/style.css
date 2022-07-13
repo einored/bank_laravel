@@ -2,6 +2,24 @@ li {
     list-style: none;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* nav a {
+    display: inline;
+    text-decoration: none;
+    margin: 100px;
+} */
+
 a.add-account:link, a.add-account:visited {
     background-color: white;
     color: black;
@@ -17,6 +35,8 @@ a.add-account:hover, a.add-account:active {
     background-color: green;
     color: white;
 }
+
+
 
 .account-table {
     font-family: Arial, Helvetica, sans-serif;
@@ -40,3 +60,22 @@ a.add-account:hover, a.add-account:active {
     background-color: #07a36a83;
     color: white;
 }
+
+.alert-success {
+    background-color: aquamarine;
+    padding: 10px;
+    display: flex;
+}
+
+.alert-deleted {
+    background-color: royalblue;
+    padding: 10px;
+    display: flex;
+}
+
+.alert-error {
+    background-color: red;
+    padding: 10px;
+    display: flex;
+}
+

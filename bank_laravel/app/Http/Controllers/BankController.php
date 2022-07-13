@@ -7,15 +7,44 @@ use Illuminate\Http\Request;
 
 class BankController extends Controller
 {
-        /**
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $accounts = Account::all();
-        
+        // $accounts = Account::all()->sortByDesc('name');
+        // $accounts = Account::where('id', '>', 7)->orderBy('name')->get(); //there id > 1 and sort        
+        // dump($accounts);
+
+        $accounts = match($request->sort) {
+            'ascId' => Account::orderBy('id', 'asc')->get(),
+            'descId' => Account::orderBy('id', 'desc')->get(),
+            'ascPersonalCode' => Account::orderBy('personalCode', 'asc')->get(),
+            'descPersonalCode' => Account::orderBy('personalCode', 'desc')->get(),
+            'ascName' => Account::orderBy('name', 'asc')->get(),
+            'descName' => Account::orderBy('name', 'desc')->get(),
+            'ascSurname' => Account::orderBy('surname', 'asc')->get(),
+            'descSurname' => Account::orderBy('surname', 'desc')->get(),
+            'ascAccNumber' => Account::orderBy('accNumber', 'asc')->get(),
+            'descAccNumber' => Account::orderBy('accNumber', 'desc')->get(),
+            'ascBalance' => Account::orderBy('balance', 'asc')->get(),
+            'descBalance' => Account::orderBy('balance', 'desc')->get(),
+            default => Account::all()
+        };
+
         return view('account.index', ['accounts' => $accounts]);
     }
 
@@ -58,14 +87,14 @@ class BankController extends Controller
         $account = new Account;
 
         $account->name = $request->create_account_name;
-        $account->surname = $request->create_account_surname;
+        $account->surname = $request->create_account_surname ?? 'no surname';
         $account->personalCode = $request->create_account_personal_code;
         $account->accNumber = $iban;
         $account->balance = '0';
 
         $account->save();
 
-        return redirect()->route('accounts-index');
+        return redirect()->route('accounts-index')->with('success', 'Created new account!');
     }
 
     /**
@@ -74,9 +103,11 @@ class BankController extends Controller
      * @param  \App\Models\Account  $account
      * @return \Illuminate\Http\Response
      */
-    public function show(Account $account)
+    public function show(int $accountId)
     {
-        //
+        $account = Account::where('id', $accountId)->first();
+
+        return view('account.show', ['account' => $account]);
     }
 
     /**
@@ -135,7 +166,7 @@ class BankController extends Controller
 
         $account->save();
 
-        return redirect()->route('accounts-index');
+        return redirect()->route('accounts-index')->with('success', 'Cash in success!');
     }
 
     /**
@@ -148,13 +179,16 @@ class BankController extends Controller
     public function withdrawBalance(Request $request, Account $account)
     {
         $input = $request->create_account_input;
+
         if($input > 0 && $account->balance-$input >= 0){
-            $account->balance -= $request->create_account_input;
+            $account->balance -= $request->create_account_input; 
+            $account->save();
+
+            return redirect()->route('accounts-index')->with('success', 'Cash out success!');
         }   
 
-        $account->save();
-
-        return redirect()->route('accounts-index');
+        return redirect()->route('accounts-index')->with('error', 'Cash out fail!');
+       
     }
 
     /**
@@ -167,6 +201,6 @@ class BankController extends Controller
     {
         $account->delete();
 
-        return redirect()->route('accounts-index');
+        return redirect()->route('accounts-index')->with('delete', 'Account deleted!');;
     }
 }

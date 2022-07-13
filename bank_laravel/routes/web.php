@@ -38,3 +38,9 @@ Route::put('/accounts/add/{account}', [B::class, 'addBalance'])->name('accounts-
 Route::get('/accounts/withdraw/{account}', [B::class, 'withdraw'])->name('accounts-withdraw');
 Route::put('/accounts/withdraw/{account}', [B::class, 'withdrawBalance'])->name('accounts-withdrawBalance');
 Route::delete('/accounts/{account}', [B::class, 'destroy'])->name('accounts-delete');
+
+Route::get('/accounts/show/{id}', [B::class, 'show'])->name('accounts-show');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
