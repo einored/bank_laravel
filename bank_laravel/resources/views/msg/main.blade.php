@@ -4,9 +4,9 @@
     </div>
 @endif
 
-@if(session('deleted'))
-    <div class="alert alert-deleted"> 
-        {{ session('deleted') }}
+@if(session('delete'))
+    <div class="alert alert-delete"> 
+        {{ session('delete') }}
     </div>
 @endif
 

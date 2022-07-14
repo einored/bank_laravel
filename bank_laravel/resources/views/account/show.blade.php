@@ -20,10 +20,11 @@
                                 <th scope="col">Surname</th>
                                 <th scope="col">Account number</th>
                                 <th scope="col">Balance (&euro;)</th>
+@if(Auth::user()->role > 9)
                                 <th scope="col">Cash In</th>
                                 <th scope="col">Cash out</th>
                                 <th scope="col">Delete</th>
-                                <th scope="col">Show</th>
+@endif
                             </tr>
                         </thead>
                         <tr>
@@ -33,7 +34,7 @@
                             <td>{{$account->surname}}</td>
                             <td>{{$account->accNumber}}</td>
                             <td>{{$account->balance}}</td>
-
+@if(Auth::user()->role > 9)
                             <td><a class="btn btn-success btn-sm" href="{{route('accounts-add', $account)}}">Add</a></td>
                             <td><a class="btn btn-danger btn-sm" href="{{route('accounts-withdraw', $account)}}">Withdraw</a></td>
                             <td>
@@ -43,8 +44,8 @@
                                     <button type="submit" class="btn btn-outline-warning btn-sm">Delete</button>
                                 </form>
                             </td>
-                            <td><a class="btn btn-outline-info btn-sm" href="{{route('accounts-show', $account->id)}}">Show</a></td>
-                        </tr>
+@endif
+                             </tr>
                     </table>
                 </div>
             </div>

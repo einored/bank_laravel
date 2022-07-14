@@ -67,7 +67,7 @@ a.add-account:hover, a.add-account:active {
     display: flex;
 }
 
-.alert-deleted {
+.alert-delete {
     background-color: royalblue;
     padding: 10px;
     display: flex;

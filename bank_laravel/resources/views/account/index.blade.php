@@ -39,9 +39,11 @@
                                     <a href="{{route('accounts-index', ['sort' => 'ascBalance'])}}">&#8679;</a>
                                     <a href="{{route('accounts-index', ['sort' => 'descBalance'])}}">&#8681;</a>
                                 </th>
+@if(Auth::user()->role > 9)
                                 <th scope="col">Cash In</th>
                                 <th scope="col">Cash out</th>
                                 <th scope="col">Delete</th>
+@endif
                                 <th scope="col">Show</th>
                             </tr>
                         </thead>
@@ -53,7 +55,7 @@
                             <td>{{$account->surname}}</td>
                             <td>{{$account->accNumber}}</td>
                             <td>{{$account->balance}}</td>
-
+@if(Auth::user()->role > 9)
                             <td><a class="btn btn-success btn-sm" href="{{route('accounts-add', $account)}}">Add</a></td>
                             <td><a class="btn btn-danger btn-sm" href="{{route('accounts-withdraw', $account)}}">Withdraw</a></td>
                             <td>
@@ -63,6 +65,7 @@
                                     <button type="submit" class="btn btn-outline-warning btn-sm">Delete</button>
                                 </form>
                             </td>
+@endif
                             <td><a class="btn btn-outline-info btn-sm" href="{{route('accounts-show', $account->id)}}">Show</a></td>
                         </tr>
 
