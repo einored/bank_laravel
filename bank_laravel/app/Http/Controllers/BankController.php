@@ -162,11 +162,16 @@ class BankController extends Controller
         $input = $request->create_account_input;
         if($input > 0){
             $account->balance += $request->create_account_input;
-        }            
 
-        $account->save();
+            $account->save();
 
-        return redirect()->route('accounts-index')->with('success', 'Cash in success!');
+            // return redirect()->route('accounts-index')->with('success', 'Cash in success!');
+            return back()->with('success', 'Cash in success!');
+        }           
+        
+        return back()->with('error', 'Cash in fail!');
+
+        
     }
 
     /**
@@ -184,10 +189,10 @@ class BankController extends Controller
             $account->balance -= $request->create_account_input; 
             $account->save();
 
-            return redirect()->route('accounts-index')->with('success', 'Cash out success!');
+            return back()->with('success', 'Cash out success!');
         }   
 
-        return redirect()->route('accounts-index')->with('error', 'Cash out fail!');
+        return back()->with('error', 'Cash out fail!');
        
     }
 

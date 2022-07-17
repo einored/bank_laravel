@@ -11,7 +11,7 @@
                 
                 <div class="card-body">
                     @include('msg.main')
-                    <a href="{{route('accounts-index')}}">Reset sort</a>
+                    <a class="btn btn-secondary btn-sm" href="{{route('accounts-index')}}">Reset sort</a>
                     <table class="table">
                         <thead class="thead-light">
                             <tr>

@@ -59,9 +59,11 @@
                                 <a class="dropdown-item" href="{{ route('accounts-index') }}">
                                     Account List
                                 </a>
+                                @if(Auth::user()->role > 9)
                                 <a class="dropdown-item" href="{{ route('accounts-create') }}">
                                     New Account
                                 </a>
+                                @endif
                             </div>
                         </li>
 

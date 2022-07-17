@@ -39,7 +39,7 @@
                             
                             @csrf
                             @method('put')
-                            <button type="submit" class="btn btn-danger btn-sm btn-block">Cash Out</button>
+                            <button type="submit" class="button-top-margin btn btn-danger btn-sm btn-block">Cash Out</button>
                         </form>
                     </ul>
                 </div>

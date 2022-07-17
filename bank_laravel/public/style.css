@@ -1,18 +1,18 @@
-li {
+/* li {
     list-style: none;
-}
+} */
 
 /* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
+/* input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
+} */
 
 /* Firefox */
-input[type=number] {
+/* input[type=number] {
   -moz-appearance: textfield;
-}
+} */
 
 /* nav a {
     display: inline;
@@ -20,7 +20,7 @@ input[type=number] {
     margin: 100px;
 } */
 
-a.add-account:link, a.add-account:visited {
+/* a.add-account:link, a.add-account:visited {
     background-color: white;
     color: black;
     border: 2px solid green;
@@ -59,9 +59,9 @@ a.add-account:hover, a.add-account:active {
     text-align: left;
     background-color: #07a36a83;
     color: white;
-}
+} */
 
-.alert-success {
+/* .alert-success {
     background-color: aquamarine;
     padding: 10px;
     display: flex;
@@ -77,5 +77,5 @@ a.add-account:hover, a.add-account:active {
     background-color: red;
     padding: 10px;
     display: flex;
-}
+} */
 
